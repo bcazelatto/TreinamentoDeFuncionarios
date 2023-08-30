@@ -38,16 +38,6 @@ public class TurmaParticipanteController {
 		
 	}
 	
-	@PutMapping("/{codigo}")
-	public ResponseEntity<TurmaParticipante> alterar(@PathVariable Long codigo,@Valid @RequestBody TurmaParticipante turmaParticipante){
-		TurmaParticipante updateTurmaParticipante = service.alterar(codigo, turmaParticipante);
-		if (updateTurmaParticipante != null) {
-			return new ResponseEntity<>(updateTurmaParticipante, HttpStatus.OK);
-		}else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-	
 	@DeleteMapping("/{codigo}")
     public ResponseEntity<Void> excluir(@PathVariable Long codigo) {
         service.excluir(codigo);

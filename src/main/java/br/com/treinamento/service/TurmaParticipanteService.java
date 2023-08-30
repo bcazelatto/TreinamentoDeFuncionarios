@@ -10,8 +10,6 @@ public interface TurmaParticipanteService {
 
 	TurmaParticipante incluir(TurmaParticipante turmaParticipante);
 	
-	TurmaParticipante alterar(Long codigo, TurmaParticipante TurmaParticipante);
-	
 	void excluir(Long codigo);
 
 }

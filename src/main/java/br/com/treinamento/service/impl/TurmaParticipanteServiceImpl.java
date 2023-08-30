@@ -83,36 +83,6 @@ public class TurmaParticipanteServiceImpl implements TurmaParticipanteService {
 	}
 
 	@Override
-	public TurmaParticipante alterar(Long codigo, TurmaParticipante TurmaParticipante) {
-        // Obtém uma conexão do ConexaoMySQL
-        Connection conexao = conexaoMySQL.conectar();
-        
-        try {
-        	String sql = "UPDATE turmaparticipante SET Turma = ?, Funcionario = ? WHERE Codigo = ?";
-        	PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-        	preparedStatement.setInt(1, TurmaParticipante.getTurmaCodigo());
-        	preparedStatement.setInt(2, TurmaParticipante.getFuncionarioCodigo());
-        	preparedStatement.setLong(3, codigo);
-        	
-        	int updatedRows = preparedStatement.executeUpdate();
-        	
-        	if (updatedRows > 0) {
-				return TurmaParticipante;
-			} else {
-				throw new RuntimeException("Não existe dados para efetuar update.");
-			}
-			
-        } catch (SQLException |DataAccessException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Erro ao alterar uma turma participante.");
-		} finally {
-            // Fecha a conexão após o uso
-            conexaoMySQL.desconectar(conexao);
-        }    
-
-	}
-
-	@Override
 	public void excluir(Long codigo) {
         // Obtém uma conexão do ConexaoMySQL
         Connection conexao = conexaoMySQL.conectar();
