@@ -20,8 +20,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import br.com.treinamento.model.Curso;
 import br.com.treinamento.service.CursoService;
 
-@WebMvcTest(CursosController.class)
-public class CursosControllerTest {
+@WebMvcTest(CursoController.class)
+public class CursoControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;

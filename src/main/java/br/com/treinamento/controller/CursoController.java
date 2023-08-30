@@ -17,13 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.treinamento.model.Curso;
 import br.com.treinamento.service.CursoService;
 
+//@Api(value = "CursoControler")
 @RestController
 @RequestMapping("/cursos") // Define o mapeamento base para todos os endpoints relacionados a cursos
-public class CursosController {
+public class CursoController {
 	
 	@Autowired 
 	private CursoService cursoService;	 
 	
+	//@ApiOperation(value = "Cria um curso!")
 	@PostMapping // Endpoint para inclusão de cursos
     public ResponseEntity<Curso> criar(@RequestBody Curso curso) {
         Curso novoCurso = cursoService.cadastrar(curso);
