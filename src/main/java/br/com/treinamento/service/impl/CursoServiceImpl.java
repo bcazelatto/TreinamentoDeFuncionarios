@@ -67,7 +67,7 @@ public class CursoServiceImpl implements CursoService {
 			PreparedStatement preparedStatement = conexao.prepareStatement(sqlTurmas);
 			preparedStatement.setLong(1, codigo);
 
-			int linhasAfetadas = preparedStatement.executeUpdate();
+			preparedStatement.executeUpdate();
 
 			 // Query para deletar o curso
 	        String sqlCurso = "DELETE FROM Curso WHERE Codigo = ?";
@@ -76,7 +76,7 @@ public class CursoServiceImpl implements CursoService {
 	        
 	        int linhasAfetadasCurso = preparedStatementCurso.executeUpdate();
 			
-	        if (linhasAfetadasCurso == 0 && linhasAfetadas == 0) {
+	        if (linhasAfetadasCurso == 0) {
 	            throw new RuntimeException("Curso com código " + codigo + " não encontrado.");
 	        }
 	        

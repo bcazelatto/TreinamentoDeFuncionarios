@@ -59,13 +59,25 @@ public class TurmaServiceImpl implements TurmaService {
         Connection conexao = conexaoMySQL.conectar();
    
         try {
-            String sql = "UPDATE Turma SET Inicio = ?, Fim = ?, Local = ?, Curso = ? WHERE Codigo = ?";
-            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+           //Adquirindo o curso atual da turma
+        	String sqlCursoTurma = "SELECT Curso FROM Turma WHERE Codigo = ?";
+            PreparedStatement selectStatement = conexao.prepareStatement(sqlCursoTurma);
+            selectStatement.setLong(1, codigo);
+            ResultSet resultSet = selectStatement.executeQuery();
+        	
+            if (resultSet.next()) {
+                int cursoAtual = resultSet.getInt("Curso");
+                if (cursoAtual != alterar.getCursoCodigo()) {
+                    throw new UnsupportedOperationException("Não é permitido alterar o curso de uma turma existente.");
+                }
+            }	
+        	
+        	String sqlupdate = "UPDATE Turma SET Inicio = ?, Fim = ?, Local = ? WHERE Codigo = ?";
+            PreparedStatement preparedStatement = conexao.prepareStatement(sqlupdate);
             preparedStatement.setDate(1, alterar.getInicio());
             preparedStatement.setDate(2, alterar.getFim());
             preparedStatement.setString(3, alterar.getLocal());
-            preparedStatement.setInt(4, alterar.getCursoCodigo());
-            preparedStatement.setLong(5, codigo);
+            preparedStatement.setLong(4, codigo);
            
             int updatedRows = preparedStatement.executeUpdate();
 
