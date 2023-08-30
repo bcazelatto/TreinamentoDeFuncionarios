@@ -4,6 +4,17 @@ import java.util.Objects;
 
 public class TurmaParticipante {
 
+	public TurmaParticipante(int codigo, int turmaCodigo, int funcionarioCodigo) {
+		super();
+		this.codigo = codigo;
+		this.turmaCodigo = turmaCodigo;
+		this.funcionarioCodigo = funcionarioCodigo;
+	}
+	
+	public TurmaParticipante() {
+		super();
+	}
+
 	private int codigo;
 	private int turmaCodigo;
 	private int funcionarioCodigo;
