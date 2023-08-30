@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.treinamento.model.TurmaParticipante;
 import br.com.treinamento.service.TurmaParticipanteService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/turmaParticipante") // Define o mapeamento base para todos os endpoints relacionados os participantes
@@ -31,14 +32,14 @@ public class TurmaParticipanteController {
 	}
 	
 	@PostMapping // Endpoint para inclusão de participantes
-	public ResponseEntity<TurmaParticipante> adicionar(@RequestBody TurmaParticipante turmaParticipante){
+	public ResponseEntity<TurmaParticipante> adicionar(@Valid @RequestBody TurmaParticipante turmaParticipante){
 		TurmaParticipante novaTurmaParticipante = service.incluir(turmaParticipante);
 		return new ResponseEntity<>(novaTurmaParticipante, HttpStatus.ACCEPTED);
 		
 	}
 	
 	@PutMapping("/{codigo}")
-	public ResponseEntity<TurmaParticipante> alterar(@PathVariable Long codigo, @RequestBody TurmaParticipante turmaParticipante){
+	public ResponseEntity<TurmaParticipante> alterar(@PathVariable Long codigo,@Valid @RequestBody TurmaParticipante turmaParticipante){
 		TurmaParticipante updateTurmaParticipante = service.alterar(codigo, turmaParticipante);
 		if (updateTurmaParticipante != null) {
 			return new ResponseEntity<>(updateTurmaParticipante, HttpStatus.OK);

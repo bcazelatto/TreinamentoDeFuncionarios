@@ -1,6 +1,7 @@
 package br.com.treinamento.controller;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 import java.sql.Date;
@@ -24,17 +25,26 @@ public class FuncionarioControllerTest {
 
 	@Spy
 	@InjectMocks
-	private FuncionarioController fController;
+	private FuncionarioController controller;
 	
 	@Mock
 	private FuncionarioService service;
 	
 	@Test
-	void deveCriarUmCurso() throws Exception{
+	void deveCriarUmFuncionario() throws Exception{
 		
 		when(service.cadastrar(any())).thenReturn(any());
 		
-		ResponseEntity<Funcionario> response = fController.cadastrar(getFuncionario());
+		ResponseEntity<Funcionario> response = controller.cadastrar(getFuncionario());
+		
+		Assertions.assertNotNull(response);
+	}
+	
+	@Test
+	void deveAlterarUmFuncionario() throws Exception{
+		when(service.atualizar(anyLong(), any())).thenReturn(getFuncionario());
+		
+		ResponseEntity<Funcionario> response = controller.atualizar((long) 1, getFuncionario());
 		
 		Assertions.assertNotNull(response);
 	}

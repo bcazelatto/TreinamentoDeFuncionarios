@@ -11,8 +11,10 @@ public class Curso {
 	
 	@NotBlank(message = "É necessário informar o nome do curso!")
 	private String nome;
+	
 	@NotBlank(message = "É necessário informar a descrição do curso!")
 	private String descricao;
+	
 	@NotNull(message = "É necessário informar a duração do curso!")
 	private int duracao;
 

@@ -3,12 +3,23 @@ package br.com.treinamento.model;
 import java.sql.Date;
 import java.util.Objects;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class Turma {
 
 	private Long codigo;
+	
+	@NotNull(message = "É necessário informar uma data de início!")
 	private Date inicio;
+	
+	@NotNull(message = "É necessário informar uma data de fim!")
 	private Date fim;
+	
+	@NotBlank(message = "É necessário informar um local!")
 	private String local;
+	
+	@NotNull(message = "É necessário informar uma código de curso!")
 	private int cursoCodigo;
 
 	public Turma() {

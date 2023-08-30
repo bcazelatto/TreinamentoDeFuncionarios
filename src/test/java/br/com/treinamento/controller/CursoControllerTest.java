@@ -49,6 +49,11 @@ public class CursoControllerTest {
 		Assertions.assertNotNull(response);
 	}
 	
+	/*
+	 * @Test void deveDeletarUmCurso() throws Exception{
+	 * when(cursoService.excluir(anyLong())).thenReturn(getCurso()); }
+	 */
+	
 	private Curso getCurso() {
 		Curso obj = new Curso(1, "Nome", "descricao", 90);
 		return obj;

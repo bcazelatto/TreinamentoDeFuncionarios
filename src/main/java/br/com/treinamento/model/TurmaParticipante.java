@@ -2,7 +2,17 @@ package br.com.treinamento.model;
 
 import java.util.Objects;
 
+import jakarta.validation.constraints.NotNull;
+
 public class TurmaParticipante {
+	
+	private int codigo;
+	
+	@NotNull(message = "É necessário informar um código de turma!")
+	private int turmaCodigo;
+	
+	@NotNull(message = "É necessário informar um código de funcionário!")
+	private int funcionarioCodigo;
 
 	public TurmaParticipante(int codigo, int turmaCodigo, int funcionarioCodigo) {
 		super();
@@ -14,10 +24,6 @@ public class TurmaParticipante {
 	public TurmaParticipante() {
 		super();
 	}
-
-	private int codigo;
-	private int turmaCodigo;
-	private int funcionarioCodigo;
 
 	public int getCodigo() {
 		return codigo;

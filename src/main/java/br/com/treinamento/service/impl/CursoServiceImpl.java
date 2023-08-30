@@ -62,15 +62,24 @@ public class CursoServiceImpl implements CursoService {
 		Connection conexao = conexaoMySQL.conectar();
 
 		try {
-			String sql = "DELETE FROM Curso WHERE Codigo = ?";
-			PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+			// Query para deletar as turmas associadas ao curso
+			String sqlTurmas = "DELETE FROM Turma WHERE Curso IN (SELECT Codigo FROM Curso WHERE Codigo = ?)";
+			PreparedStatement preparedStatement = conexao.prepareStatement(sqlTurmas);
 			preparedStatement.setLong(1, codigo);
 
 			int linhasAfetadas = preparedStatement.executeUpdate();
 
-			if (linhasAfetadas == 0) {
-				throw new RuntimeException("Curso com código " + codigo + " não encontrado.");
-			}
+			 // Query para deletar o curso
+	        String sqlCurso = "DELETE FROM Curso WHERE Codigo = ?";
+	        PreparedStatement preparedStatementCurso = conexao.prepareStatement(sqlCurso);
+	        preparedStatementCurso.setLong(1, codigo);
+	        
+	        int linhasAfetadasCurso = preparedStatementCurso.executeUpdate();
+			
+	        if (linhasAfetadasCurso == 0 && linhasAfetadas == 0) {
+	            throw new RuntimeException("Curso com código " + codigo + " não encontrado.");
+	        }
+	        
 		} catch (SQLException | DataAccessException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Erro ao excluir o curso.");
