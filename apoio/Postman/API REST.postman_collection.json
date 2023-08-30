@@ -282,35 +282,6 @@
 							"response": []
 						},
 						{
-							"name": "Alterar",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"turmaCodigo\": 4 ,\r\n    \"funcionarioCodigo\": 2 \r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/turmaParticipante/5",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"turmaParticipante",
-										"5"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Excluir",
 							"request": {
 								"method": "DELETE",
