@@ -45,11 +45,11 @@ public class CursoControllerTest {
 	}
 	
 	@Test
-	void deveRetornarErroEnvioParamentroNullAoCriarUmCurso() throws Exception{
+	void deveRetornarErroEnvioParamentroFaltandoAoCriarUmCurso() throws Exception{
 		Curso cursoComParametroNull = new Curso(1, null, "descricao", 90);
 		
 	    Assertions.assertThrows(ValidationException.class, () -> {
-	    	validarCursoNull(cursoComParametroNull);
+	    	validarCurso(cursoComParametroNull);
 	    });
 	}
 	
@@ -111,11 +111,10 @@ public class CursoControllerTest {
 		return obj;
 	}
 	
-	private void validarCursoNull(Curso curso) {
-		if (curso.getNome() == null) {
+	private void validarCurso(Curso curso) {
+		if (curso.getNome() == null || curso.getNome().isEmpty()) {
 			throw new ValidationException("Curso não pode possuir null informações chaves");
 		}
 	}
 	
-
 }
