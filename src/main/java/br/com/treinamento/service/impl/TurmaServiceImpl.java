@@ -162,7 +162,7 @@ public class TurmaServiceImpl implements TurmaService {
         Connection conexao = conexaoMySQL.conectar();
         
         try {
-			String sql = "SELECT * FROM Turma WHERE Curso = ? ORDER BY Inicio, FIM";
+			String sql = "select T.Codigo AS Turma_Codigo, T.Inicio AS Data_Inicio, T.Fim AS Data_Fim, T.Local AS Local_Turma, T.Curso AS Curso_Codigo, COUNT(F.Codigo) AS Quantidade_Funcionarios from Turma T LEFT join Funcionario F ON T.Inicio <= F.Admissao AND T.Fim >= F.Admissao where T.Curso = ? GROUP by T.Codigo, T.Inicio, T.Fim, T.Local, T.Curso ORDER by T.Inicio, T.Fim";
 			PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 			preparedStatement.setLong(1, curso);
 			

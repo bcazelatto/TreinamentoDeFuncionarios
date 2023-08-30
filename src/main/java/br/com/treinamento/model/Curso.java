@@ -2,6 +2,7 @@ package br.com.treinamento.model;
 
 import java.util.Objects;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -16,6 +17,7 @@ public class Curso {
 	private String descricao;
 	
 	@NotNull(message = "É necessário informar a duração do curso!")
+	@Min(value = 1, message = "A duração do curso deve ser maior que zero!")
 	private int duracao;
 
 	public Curso() {

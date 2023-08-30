@@ -14,7 +14,7 @@ public class Funcionario {
 	private String nome;
 	
 	@NotBlank(message = "É necessário informar um cpf e deve estar no formato Ex. 000.000.000-00!")
-    @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", message = "O CPF deve estar no formato Ex. 000.000.000-00")
+    @Pattern(regexp = "\\d{11}", message = "O CPF deve estar no formato Ex. 00000000000")
 	private String cpf;
 	
 	@NotNull(message = "É necessário informar uma data de nascimento!")
