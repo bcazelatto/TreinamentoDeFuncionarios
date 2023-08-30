@@ -162,7 +162,7 @@ public class TurmaServiceImpl implements TurmaService {
         Connection conexao = conexaoMySQL.conectar();
         
         try {
-			String sql = "SELECT * FROM Turma Where Curso = ?";
+			String sql = "SELECT * FROM Turma WHERE Curso = ? ORDER BY Inicio, FIM";
 			PreparedStatement preparedStatement = conexao.prepareStatement(sql);
 			preparedStatement.setLong(1, curso);
 			
